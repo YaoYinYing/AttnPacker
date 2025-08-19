@@ -1,55 +1,51 @@
-"""Mutate runner implementation for AttenPacker."""
+"""Minimal mutation runner implementation for AttenPacker."""
 from __future__ import annotations
 
 import os
 import shutil
-from typing import List
-
-from REvoDesign.tools.mutate_runner import MutateRunnerAbstract
-from REvoDesign.common.mutant import Mutant
-from REvoDesign.tools.download_registry import FileDownloadRegistry, DownloadedFile
+from typing import Any, List
 
 
-class AttenPackerRunner(MutateRunnerAbstract):
-    """Run AttenPacker mutations compatible with :class:`MutateRunnerAbstract`."""
+class AttenPackerRunner:
+    """Simple runner providing a mutate-style API without external deps."""
 
     name = "AttenPacker"
     installed = True
-    weights_preset = ("default",)
-    default_weight_preset = "default"
 
-    def __init__(self, pdb_file: str, weights_preset: str | None = None):
-        super().__init__(pdb_file)
-        preset = weights_preset or self.default_weight_preset
-        self.weights: DownloadedFile = self._setup_weights(preset)
+    def __init__(self, pdb_file: str):
+        self.pdb_file = pdb_file
 
     # ------------------------------------------------------------------
-    # weight management
+    # caching utilities
     # ------------------------------------------------------------------
-    @staticmethod
-    def _registry() -> FileDownloadRegistry:
-        return FileDownloadRegistry(
-            name="AttenPacker",
-            base_url="https://example.com/weights/",
-            registry={"default": None},
-            version="1",
-        )
-
-    def _setup_weights(self, preset: str) -> DownloadedFile:
-        registry = self._registry()
-        return registry.setup(preset)
+    @property
+    def new_cache_dir(self) -> str:
+        """Create and return a cache directory for generated mutants."""
+        mutant_dir = os.path.abspath("mutant_pdbs")
+        temp_dir = os.path.join(mutant_dir, self.__class__.__name__)
+        os.makedirs(temp_dir, exist_ok=True)
+        return temp_dir
 
     # ------------------------------------------------------------------
     # mutation API
     # ------------------------------------------------------------------
-    def run_mutate(self, mutant: Mutant) -> str:  # type: ignore[override]
-        """Perform a mutation and return path to mutated PDB."""
-        out_fp = os.path.join(self.new_cache_dir, f"{mutant.mutant_id}.pdb")
+    def run_mutate(self, mutant: Any) -> str:
+        """Perform a mutation and return path to mutated PDB.
+
+        Parameters
+        ----------
+        mutant:
+            Object describing the mutation. Only the ``mutant_id`` attribute is
+            accessed; if missing the ``str()`` of the object is used.
+        """
+
+        mutant_id = getattr(mutant, "mutant_id", str(mutant))
+        out_fp = os.path.join(self.new_cache_dir, f"{mutant_id}.pdb")
         shutil.copy(self.pdb_file, out_fp)
         return out_fp
 
-    def run_mutate_parallel(self, mutants: List[Mutant], nproc: int = 2) -> List[str]:  # type: ignore[override]
-        """Perform mutations in parallel (currently sequential)."""
+    def run_mutate_parallel(self, mutants: List[Any], nproc: int = 2) -> List[str]:
+        """Perform mutations sequentially and return output PDB paths."""
         return [self.run_mutate(m) for m in mutants]
 
 
