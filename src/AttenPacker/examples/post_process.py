@@ -1,11 +1,11 @@
 import os
 import sys
-from protein_learning.protein_utils.sidechains.project_sidechains import (
+from AttenPacker.protein_utils.sidechains.project_sidechains import (
     project_onto_rotamers,
 )
-from protein_learning.common.data.data_types.protein import Protein
-import protein_learning.common.protein_constants as pc
-from protein_learning.common.data.datasets.utils import set_canonical_coords_n_masks
+from AttenPacker.common.data.data_types.protein import Protein
+import AttenPacker.common.protein_constants as pc
+from AttenPacker.common.data.datasets.utils import set_canonical_coords_n_masks
 from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
 
 import time
@@ -58,7 +58,7 @@ def project_pdb(
     )
 
 
-if __name__ == "__main__":
+def main(argv: list[str] | None = None) -> None:
     parser = ArgumentParser(
         description="Project Protein Sidechains onto Continuous Rotamer and Minimize Steric Clashes",  # noqa
         epilog="",
@@ -95,7 +95,11 @@ if __name__ == "__main__":
         default=0,
     )
     parser.add_argument("--device", help="device to use when running this procedure", type=str, default="cpu")
-    args = parser.parse_args(sys.argv[1:])
+    args = parser.parse_args(argv)
     start = time.time()
     project_pdb(**vars(args))
     print(f"Finished in {round(time.time()-start,3)} seconds")
+
+
+if __name__ == "__main__":
+    main(sys.argv[1:])
