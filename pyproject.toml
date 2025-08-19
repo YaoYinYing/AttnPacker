@@ -1,6 +1,6 @@
 [build-system]
-requires = ["setuptools>=61"]
-build-backend = "setuptools.build_meta"
+requires = ["flit_core >=2,<4"]
+build-backend = "flit_core.buildapi"
 
 [project]
 name = "AttenPacker"
@@ -21,9 +21,6 @@ dependencies = [
     "typeguard>=2.13.3",
     "matplotlib",
 ]
-
-[tool.setuptools.packages.find]
-where = ["src"]
 
 [project.scripts]
 attnpacker-post-process = "AttenPacker.examples.post_process:main"

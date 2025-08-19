@@ -1,3 +1,5 @@
 """AttenPacker package root."""
 
-__all__: list[str] = []
+from .inference_runner import InferenceRunner
+
+__all__ = ["InferenceRunner"]
