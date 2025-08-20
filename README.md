@@ -41,17 +41,32 @@ writes the processed structure to ``pdb_path_out``.
 
 ```python
 from AttenPacker import InferenceRunner
-runner = InferenceRunner(weight="weights.pt", save_dir="outputs")
+
+runner = InferenceRunner(resource_root="/path/to/resources", save_dir="outputs")
 runner.run("examples/T0967.pdb")
+# optionally project onto discrete rotamers
+runner.run("examples/T0967.pdb", postprocess=True)
 ```
 
-An object oriented wrapper around :func:`project_pdb`.  It exposes two
-methods:
+Runs the pretrained network and writes the predicted PDB to ``save_dir``.  The
+``run_batch`` method sequentially processes multiple files.
 
-- `run(pdb_path)` – process a single PDB file and return the output path
-- `run_batch(pdb_paths, nproc=2)` – process multiple files in parallel
+### `SamplingRunner`
 
-Example PDB files are provided in the ``examples/`` directory.
+```python
+from AttenPacker import SamplingRunner
+
+sampler = SamplingRunner(resource_root="/path/to/resources")
+designs = sampler.sample("examples/T0967.pdb", n_samples=5, temperature=0.2)
+# return FASTA-formatted entries
+fastas = sampler.sample("examples/T0967.pdb", n_samples=2, return_fasta=True)
+```
+
+Draws sequence samples for the masked residues of an input structure.
+
+Utility helpers from ``AttenPacker.util`` include ``residue_mask`` for mask
+construction, ``sample_sequence`` for drawing sequences, ``score_sequence`` for
+evaluating them and ``to_fasta_entry`` for formatting FASTA outputs.
 
 ## Testing
 
