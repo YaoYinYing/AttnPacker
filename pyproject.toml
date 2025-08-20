@@ -1,0 +1,29 @@
+[build-system]
+requires = ["flit_core >=2,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "AttenPacker"
+version = "0.1.0"
+description = "Protein side-chain packing via attention models"
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+    "biopython<2",
+    "torch<=2.3.0",
+    "cached_property>=1.5.2",
+    "einops>=0.3.0",
+    "filelock>=3.9.0",
+    "numpy>=1.24",
+    "scipy>=1.10",
+    "scoring>=0.0.9",
+    "torchtyping>=0.1.4",
+    "typeguard>=2.13.3",
+    "matplotlib",
+]
+
+[project.optional-dependencies]
+test = ["pytest"]
+
+[project.scripts]
+attnpacker-post-process = "AttenPacker.attenpaker:main"
