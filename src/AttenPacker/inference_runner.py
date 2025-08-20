@@ -1,55 +1,124 @@
+"""Utilities for running full-model inference.
+
+This module wraps the :class:`~AttenPacker.models.inference_utils.Inference`
+helper used in the ``Inference.ipynb`` example notebook.  The original
+``InferenceRunner`` only exposed :func:`project_pdb` for post-processing, but
+the refactored version runs the neural network and writes the predicted PDB to
+disk.
+"""
+
 from __future__ import annotations
 
 import os
-from concurrent.futures import ProcessPoolExecutor
-from functools import partial
-from typing import Iterable, List
+from typing import Iterable, List, Optional
 
-from AttenPacker.attenpaker import project_pdb
+from AttenPacker.models.inference_utils import Inference, make_predicted_protein
+from AttenPacker.util import project_coords_to_rotamers
 
 
 class InferenceRunner:
-    """Simple wrapper to run AttnPacker side-chain projection.
+    """High level wrapper around :class:`~AttenPacker.models.inference_utils.Inference`.
 
     Parameters
     ----------
-    weight : str
-        Path to model weights. The file is not used directly but kept for
-        compatibility with external runners.
+    resource_root : str
+        Path containing model parameters and configuration files.
     save_dir : str
         Directory where output PDB files will be written.
     device : str, optional
-        Device string passed to :func:`project_pdb`.
+        Device string passed to :class:`Inference`.
+    use_design_variant : bool, optional
+        Whether to load the sequence-design variant of the model.
+    use_rotamer_conditioning : bool, optional
+        Enable rotamer conditioning during inference.
+    chunk_size : int, optional
+        Maximum sequence length processed in a single forward pass.
     """
 
-    def __init__(self, weight: str, save_dir: str, device: str = "cpu") -> None:
-        self.weight = weight
+    def __init__(
+        self,
+        resource_root: str,
+        save_dir: str,
+        device: str = "cpu",
+        *,
+        use_design_variant: bool = False,
+        use_rotamer_conditioning: bool = False,
+        chunk_size: int = 500,
+    ) -> None:
         self.save_dir = save_dir
-        self.device = device
+        self.chunk_size = chunk_size
         os.makedirs(self.save_dir, exist_ok=True)
 
-    def run(self, pdb_path: str) -> str:
-        """Process a single PDB file and return the output path."""
-        out_path = os.path.join(self.save_dir, os.path.basename(pdb_path))
-        project_pdb(pdb_path_in=pdb_path, pdb_path_out=out_path, device=self.device)
-        return out_path
+        self._inference = (
+            Inference(
+                resource_root,
+                use_design_variant=use_design_variant,
+                use_rotamer_conditioning=use_rotamer_conditioning,
+            ).to(device)
+        )
 
-    def run_batch(self, pdb_paths: Iterable[str], nproc: int = 2) -> List[str]:
-        """Process multiple PDB files in parallel.
+    def run(
+        self,
+        pdb_path: str,
+        *,
+        fasta_path: Optional[str] = None,
+        seq_mask=None,
+        dihedral_mask=None,
+        save: bool = True,
+        postprocess: bool = False,
+    ) -> str | dict:
+        """Run inference on a single PDB file.
 
         Parameters
         ----------
-        pdb_paths : Iterable[str]
-            Collection of input PDB file paths.
-        nproc : int, optional
-            Number of worker processes to use.
+        pdb_path : str
+            Input PDB file.
+        fasta_path : str, optional
+            Optional FASTA file providing the sequence.
+        seq_mask : torch.Tensor, optional
+            Boolean tensor indicating residues to redesign.
+        dihedral_mask : torch.Tensor, optional
+            Boolean tensor specifying rotamers to condition on.
+        save : bool, optional
+            If ``True``, write the predicted PDB to ``save_dir`` and return the
+            output path.  Otherwise, return the raw prediction dictionary.
         """
-        func = partial(_process_single, save_dir=self.save_dir, device=self.device)
-        with ProcessPoolExecutor(max_workers=nproc) as pool:
-            return list(pool.map(func, pdb_paths))
+
+        prediction = self._inference.infer(
+            pdb_path,
+            fasta_path=fasta_path,
+            seq_mask=seq_mask,
+            dihedral_mask=dihedral_mask,
+            format=True,
+            chunk_size=self.chunk_size,
+        )
+
+        if not save:
+            return prediction
+
+        pred_protein = make_predicted_protein(
+            prediction["model_out"], seq=prediction["seq"]
+        )
+        out_path = os.path.join(self.save_dir, f"{pred_protein.name}_packed.pdb")
+        pred_protein.to_pdb(out_path, beta=prediction["pred_plddt"].squeeze())
+
+        if postprocess:
+            pp_coords = project_coords_to_rotamers(pred_protein)
+            pp_path = os.path.join(
+                self.save_dir, f"{pred_protein.name}_packed_pp.pdb"
+            )
+            pred_protein.to_pdb(
+                pp_path, coords=pp_coords, beta=prediction["pred_plddt"].squeeze()
+            )
+            return pp_path
+
+        return out_path
+
+    def run_batch(self, pdb_paths: Iterable[str], **kwargs) -> List[str | dict]:
+        """Run inference on multiple PDB files sequentially."""
+
+        return [self.run(pdb_path, **kwargs) for pdb_path in pdb_paths]
 
 
-def _process_single(pdb_path: str, save_dir: str, device: str) -> str:
-    out_path = os.path.join(save_dir, os.path.basename(pdb_path))
-    project_pdb(pdb_path_in=pdb_path, pdb_path_out=out_path, device=device)
-    return out_path
+__all__ = ["InferenceRunner"]
+
