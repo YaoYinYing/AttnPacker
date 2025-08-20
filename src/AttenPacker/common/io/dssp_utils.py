@@ -6,9 +6,9 @@ import torch
 from Bio.PDB.DSSP import DSSP  # noqa
 from torch import Tensor
 
-from protein_learning.common.global_constants import get_logger
-from protein_learning.common.helpers import default
-from protein_learning.common.io.pdb_utils import map_seq_to_pdb, get_structure
+from AttenPacker.common.global_constants import get_logger
+from AttenPacker.common.helpers import default
+from AttenPacker.common.io.pdb_utils import map_seq_to_pdb, get_structure
 
 logger = get_logger(__name__)
 

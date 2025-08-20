@@ -12,20 +12,20 @@ import sys
 from abc import abstractmethod
 import gc
 import torch
-from protein_learning.features.input_embedding import InputEmbedding
+from AttenPacker.features.input_embedding import InputEmbedding
 from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
-from protein_learning.features.feature_config import InputFeatureConfig
-from protein_learning.features.feature_generator import FeatureGenerator
+from AttenPacker.features.feature_config import InputFeatureConfig
+from AttenPacker.features.feature_generator import FeatureGenerator
 
-# from protein_learning.training.trainer import Trainer
-from protein_learning.common.global_constants import get_logger, _set_jit_fusion_options  # noqa
-from protein_learning.models.utils.model_io import (
+# from AttenPacker.training.trainer import Trainer
+from AttenPacker.common.global_constants import get_logger, _set_jit_fusion_options  # noqa
+from AttenPacker.models.utils.model_io import (
     load_n_save_args,
     print_args,
     get_args_n_groups,
     load_args_for_eval,
 )
-from protein_learning.models.utils.opt_parse import (
+from AttenPacker.models.utils.opt_parse import (
     add_default_loss_options,
     add_inter_chain_mask_options,
     add_intra_chain_mask_options,
@@ -35,16 +35,16 @@ from protein_learning.models.utils.opt_parse import (
     add_stats_options,
 )
 
-from protein_learning.features.default_feature_generator import DefaultFeatureGenerator
-from protein_learning.common.data.datasets.protein_dataset import ProteinDataset
-from protein_learning.common.global_config import GlobalConfig
-from protein_learning.common.helpers import exists, default
-from protein_learning.models.model_abc.protein_model import ProteinModel
+from AttenPacker.features.default_feature_generator import DefaultFeatureGenerator
+from AttenPacker.common.data.datasets.protein_dataset import ProteinDataset
+from AttenPacker.common.global_config import GlobalConfig
+from AttenPacker.common.helpers import exists, default
+from AttenPacker.models.model_abc.protein_model import ProteinModel
 
-# from protein_learning.assessment.model_eval.model_evaluator import ModelEvaluator, StatsConfig
+# from AttenPacker.assessment.model_eval.model_evaluator import ModelEvaluator, StatsConfig
 
-# from protein_learning.assessment.model_eval.genetic_alg.ga_evaluator import GAEvaluator
-# from protein_learning.assessment.model_eval.genetic_alg.utils import add_ga_args
+# from AttenPacker.assessment.model_eval.genetic_alg.ga_evaluator import GAEvaluator
+# from AttenPacker.assessment.model_eval.genetic_alg.utils import add_ga_args
 import numpy as np
 
 # _set_jit_fusion_options()

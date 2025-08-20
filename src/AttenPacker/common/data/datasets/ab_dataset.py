@@ -2,14 +2,14 @@
 import random
 from typing import Optional, List, Callable, Tuple, Union
 
-from protein_learning.common.data.data_types.model_input import ExtraInput, ModelInput
-from protein_learning.common.data.data_types.protein import Protein
-from protein_learning.common.data.datasets.protein_dataset import ProteinDataset
-from protein_learning.common.data.datasets.utils import (
+from AttenPacker.common.data.data_types.model_input import ExtraInput, ModelInput
+from AttenPacker.common.data.data_types.protein import Protein
+from AttenPacker.common.data.datasets.protein_dataset import ProteinDataset
+from AttenPacker.common.data.datasets.utils import (
     get_ab_ag_spatial_crop
 )
-from protein_learning.common.global_constants import get_logger
-from protein_learning.features.feature_generator import FeatureGenerator
+from AttenPacker.common.global_constants import get_logger
+from AttenPacker.features.feature_generator import FeatureGenerator
 import os
 
 logger = get_logger(__name__)

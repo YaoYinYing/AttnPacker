@@ -8,11 +8,11 @@ import torch
 from einops import rearrange  # noqa
 from torch import Tensor
 
-from protein_learning.common.data.data_types.model_input import ModelInput
-from protein_learning.common.data.data_types.protein import Protein
-from protein_learning.common.helpers import default
-from protein_learning.protein_utils.align.kabsch_align import kabsch_align
-from protein_learning.protein_utils.sidechains.sidechain_utils import align_symmetric_sidechains
+from AttenPacker.common.data.data_types.model_input import ModelInput
+from AttenPacker.common.data.data_types.protein import Protein
+from AttenPacker.common.helpers import default
+from AttenPacker.protein_utils.align.kabsch_align import kabsch_align
+from AttenPacker.protein_utils.sidechains.sidechain_utils import align_symmetric_sidechains
 
 
 

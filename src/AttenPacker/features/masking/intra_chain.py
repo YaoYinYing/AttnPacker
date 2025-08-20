@@ -9,12 +9,12 @@ import torch
 from einops import repeat, rearrange  # noqa
 from torch import Tensor
 
-from protein_learning.assessment.metrics import get_inter_chain_contacts
-from protein_learning.common.data.data_types.protein import Protein
-from protein_learning.common.global_constants import get_logger
-from protein_learning.common.helpers import exists
-from protein_learning.common.helpers import k_spatial_nearest_neighbors
-from protein_learning.features.masking.masking_utils import (
+from AttenPacker.assessment.metrics import get_inter_chain_contacts
+from AttenPacker.common.data.data_types.protein import Protein
+from AttenPacker.common.global_constants import get_logger
+from AttenPacker.common.helpers import exists
+from AttenPacker.common.helpers import k_spatial_nearest_neighbors
+from AttenPacker.features.masking.masking_utils import (
     bool_tensor,
     get_mask_len,
     sample_strategy,

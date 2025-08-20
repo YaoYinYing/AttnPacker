@@ -9,15 +9,21 @@ import numpy as np
 import torch
 from Bio import pairwise2  # noqa
 from Bio.PDB import PDBParser, MMCIFParser  # noqa
-from Bio.PDB.Polypeptide import three_to_one, is_aa  # noqa
+from Bio.PDB.Polypeptide import is_aa  # noqa
+from Bio.SeqUtils import seq1 as three_to_one
 from Bio.PDB.Residue import Residue  # noqa
 from Bio.PDB.Structure import Structure  # noqa
-from Bio.SubsMat.MatrixInfo import blosum80 as BLOSUM80  # noqa
+try:
+    from Bio.SubsMat.MatrixInfo import blosum80 as BLOSUM80  # type: ignore
+except Exception:  # pragma: no cover - fallback for newer Biopython
+    from Bio.Align import substitution_matrices
+
+    BLOSUM80 = substitution_matrices.load("BLOSUM80")
 from torch import Tensor
 
-from protein_learning.common.helpers import default
-from protein_learning.common.io.select_atoms import SelectCG, SelectCB
-from protein_learning.common.protein_constants import VALID_AA_3_LETTER, VALID_AA_1_LETTER
+from AttenPacker.common.helpers import default
+from AttenPacker.common.io.select_atoms import SelectCG, SelectCB
+from AttenPacker.common.protein_constants import VALID_AA_3_LETTER, VALID_AA_1_LETTER
 
 VALID_AA_1_LETTER_SET = set(VALID_AA_1_LETTER)
 VALID_AA_3_LETTER_SET = set(VALID_AA_3_LETTER)

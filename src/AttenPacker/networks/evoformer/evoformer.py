@@ -6,10 +6,10 @@ import torch.nn.functional as F  # noqa
 from einops import rearrange, repeat  # noqa
 from torch import nn, Tensor
 
-from protein_learning.common.global_constants import get_logger
-from protein_learning.networks.attention.node_attention import NodeUpdateBlock
-from protein_learning.networks.attention.pair_attention import PairUpdateBlock
-from protein_learning.networks.evoformer.evoformer_config import EvoformerConfig
+from AttenPacker.common.global_constants import get_logger
+from AttenPacker.networks.attention.node_attention import NodeUpdateBlock
+from AttenPacker.networks.attention.pair_attention import PairUpdateBlock
+from AttenPacker.networks.evoformer.evoformer_config import EvoformerConfig
 
 logger = get_logger(__name__)
 TorchList = nn.ModuleList  # noqa

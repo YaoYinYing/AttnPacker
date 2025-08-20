@@ -2,8 +2,8 @@ import torch
 from einops import rearrange
 from torch import nn
 
-from protein_learning.networks.common.helpers.torch_utils import batched_index_select
-from protein_learning.networks.common.utils import exists, default
+from AttenPacker.networks.common.helpers.torch_utils import batched_index_select
+from AttenPacker.networks.common.utils import exists, default
 
 
 class PairwiseKernel(nn.Module):

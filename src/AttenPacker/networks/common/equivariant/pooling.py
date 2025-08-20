@@ -2,9 +2,9 @@ import torch
 from einops import rearrange
 from torch import nn, einsum
 
-from protein_learning.networks.common.constants import EPS
-from protein_learning.networks.common.utils import default
-from protein_learning.networks.common.invariant.units import FeedForward
+from AttenPacker.networks.common.constants import EPS
+from AttenPacker.networks.common.utils import default
+from AttenPacker.networks.common.invariant.units import FeedForward
 
 
 class MeanPool(nn.Module):

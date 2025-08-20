@@ -6,10 +6,10 @@ import numpy as np
 import torch
 from torch import sin, cos, atan2, acos
 
-from protein_learning.networks.common.helpers.torch_utils import cast_torch_tensor
-from protein_learning.networks.common.utils import default
-from protein_learning.networks.tfn.repr.fiber import to_order
-from protein_learning.networks.tfn.repr.spherical_harmonics import get_spherical_harmonics
+from AttenPacker.networks.common.helpers.torch_utils import cast_torch_tensor
+from AttenPacker.networks.common.utils import default
+from AttenPacker.networks.tfn.repr.fiber import to_order
+from AttenPacker.networks.tfn.repr.spherical_harmonics import get_spherical_harmonics
 
 DATA_PATH = path = Path(os.path.dirname(__file__)) / 'data'
 

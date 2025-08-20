@@ -7,11 +7,11 @@ import torch.nn.functional as F  # noqa
 from einops import rearrange  # noqa
 from torch import Tensor
 
-from protein_learning.common.data.data_types.protein import Protein
-from protein_learning.networks.loss.coord_loss import CoordDeviationLoss
-from protein_learning.networks.loss.coord_loss import TMLoss
-from protein_learning.common.helpers import exists
-from protein_learning.common.protein_constants import AA_TO_SC_ATOMS, BB_ATOMS, NAT_AA_SET
+from AttenPacker.common.data.data_types.protein import Protein
+from AttenPacker.networks.loss.coord_loss import CoordDeviationLoss
+from AttenPacker.networks.loss.coord_loss import TMLoss
+from AttenPacker.common.helpers import exists
+from AttenPacker.common.protein_constants import AA_TO_SC_ATOMS, BB_ATOMS, NAT_AA_SET
 
 
 def fill_atom_masks(protein: Protein, overwrite: bool = False) -> Protein:

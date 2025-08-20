@@ -3,19 +3,19 @@ from typing import Optional, List, Any, Callable, Tuple, Union
 
 import torch
 
-from protein_learning.common.data.data_types.model_input import ExtraInput, ModelInput
-from protein_learning.common.data.data_types.protein import Protein
-from protein_learning.common.data.datasets.dataset import ProteinDatasetABC
-from protein_learning.common.data.datasets.utils import (
+from AttenPacker.common.data.data_types.model_input import ExtraInput, ModelInput
+from AttenPacker.common.data.data_types.protein import Protein
+from AttenPacker.common.data.datasets.dataset import ProteinDatasetABC
+from AttenPacker.common.data.datasets.utils import (
     get_contiguous_crop,
     get_dimer_spatial_crop,
     restrict_protein_to_aligned_residues,
     set_canonical_coords_n_masks,
 )
-from protein_learning.common.global_constants import get_logger
-from protein_learning.common.helpers import default, exists
-#from protein_learning.common.io.dips_utils import load_proteins_from_dill
-from protein_learning.features.feature_generator import FeatureGenerator
+from AttenPacker.common.global_constants import get_logger
+from AttenPacker.common.helpers import default, exists
+#from AttenPacker.common.io.dips_utils import load_proteins_from_dill
+from AttenPacker.features.feature_generator import FeatureGenerator
 
 logger = get_logger(__name__)
 

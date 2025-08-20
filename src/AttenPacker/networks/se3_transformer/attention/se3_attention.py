@@ -6,16 +6,16 @@ from torch import einsum
 from torch import nn
 from abc import abstractmethod
 
-from protein_learning.networks.common.helpers.neighbor_utils import NeighborInfo
-from protein_learning.networks.common.helpers.torch_utils import batched_index_select, safe_norm, safe_cat
-from protein_learning.networks.common.utils import exists
-from protein_learning.networks.se3_transformer.se3_attention_config import SE3AttentionConfig
-from protein_learning.networks.tfn.repr.fiber import Fiber, to_order, cast_fiber
-from protein_learning.networks.common.equivariant.linear import VNLinear
-from protein_learning.networks.common.equivariant.fiber_units import FiberLinear
-from protein_learning.networks.common.constants import DIST_SCALE
+from AttenPacker.networks.common.helpers.neighbor_utils import NeighborInfo
+from AttenPacker.networks.common.helpers.torch_utils import batched_index_select, safe_norm, safe_cat
+from AttenPacker.networks.common.utils import exists
+from AttenPacker.networks.se3_transformer.se3_attention_config import SE3AttentionConfig
+from AttenPacker.networks.tfn.repr.fiber import Fiber, to_order, cast_fiber
+from AttenPacker.networks.common.equivariant.linear import VNLinear
+from AttenPacker.networks.common.equivariant.fiber_units import FiberLinear
+from AttenPacker.networks.common.constants import DIST_SCALE
 from typing import Tuple, Dict, Optional
-from protein_learning.networks.common.attention_utils import (
+from AttenPacker.networks.common.attention_utils import (
     compute_hidden_coords,
     get_rel_dists,
     get_degree_scale_for_attn,

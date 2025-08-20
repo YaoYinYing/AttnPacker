@@ -1,6 +1,6 @@
 import torch
 
-from protein_learning.common.data.data_types.protein import Protein
+from AttenPacker.common.data.data_types.protein import Protein
 
 
 def test_crop():

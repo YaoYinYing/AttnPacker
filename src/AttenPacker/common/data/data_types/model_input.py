@@ -8,9 +8,9 @@ from typing import Any, Optional, Tuple, Union, List, Dict
 
 from torch import Tensor
 
-from protein_learning.common.data.data_types.protein import Protein
-from protein_learning.common.helpers import exists, default
-from protein_learning.features.input_features import InputFeatures
+from AttenPacker.common.data.data_types.protein import Protein
+from AttenPacker.common.helpers import exists, default
+from AttenPacker.features.input_features import InputFeatures
 
 
 class ExtraInput(ABC):

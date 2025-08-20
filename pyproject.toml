@@ -23,4 +23,4 @@ dependencies = [
 ]
 
 [project.scripts]
-attnpacker-post-process = "AttenPacker.examples.post_process:main"
+attnpacker-post-process = "AttenPacker.attenpaker:main"

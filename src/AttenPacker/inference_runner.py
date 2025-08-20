@@ -5,7 +5,7 @@ from concurrent.futures import ProcessPoolExecutor
 from functools import partial
 from typing import Iterable, List
 
-from .examples.post_process import project_pdb
+from AttenPacker.attenpaker import project_pdb
 
 
 class InferenceRunner:

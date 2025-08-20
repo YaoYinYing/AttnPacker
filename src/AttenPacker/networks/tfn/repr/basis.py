@@ -6,12 +6,12 @@ import torch
 from einops import rearrange
 from torch import einsum
 
-from protein_learning.networks.common.helpers.torch_utils import torch_default_dtype
-from protein_learning.networks.common.utils import exists
-from protein_learning.networks.tfn.repr.cache_utils import cache_dir
-from protein_learning.networks.tfn.repr.fiber import to_order
-from protein_learning.networks.tfn.repr.irr_repr import irr_repr, spherical_harmonics
-from protein_learning.networks.tfn.repr.spherical_harmonics import clear_spherical_harmonics_cache
+from AttenPacker.networks.common.helpers.torch_utils import torch_default_dtype
+from AttenPacker.networks.common.utils import exists
+from AttenPacker.networks.tfn.repr.cache_utils import cache_dir
+from AttenPacker.networks.tfn.repr.fiber import to_order
+from AttenPacker.networks.tfn.repr.irr_repr import irr_repr, spherical_harmonics
+from AttenPacker.networks.tfn.repr.spherical_harmonics import clear_spherical_harmonics_cache
 from filelock import FileLock
 import pickle
 import gzip

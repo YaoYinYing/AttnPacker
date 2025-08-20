@@ -3,17 +3,17 @@ from typing import Tuple, Dict, Any, Optional, List
 
 import numpy as np
 from torch import nn, Tensor
-from protein_learning.common.data.data_types.model_input import ModelInput
-from protein_learning.common.data.data_types.model_loss import ModelLoss
-from protein_learning.common.data.data_types.model_output import ModelOutput
-from protein_learning.common.global_constants import get_logger
-from protein_learning.common.helpers import exists
-from protein_learning.features.input_embedding import InputEmbedding
-from protein_learning.models.model_abc.structure_model import StructureModel
-from protein_learning.networks.geometric_gt.geom_gt_config import GeomGTConfig
-from protein_learning.networks.geometric_gt.geometric_graph_transformer import GraphTransformer
-from protein_learning.networks.se3_transformer.se3_transformer_config import SE3TransformerConfig
-from protein_learning.networks.se3_transformer.tfn_transformer import TFNTransformer
+from AttenPacker.common.data.data_types.model_input import ModelInput
+from AttenPacker.common.data.data_types.model_loss import ModelLoss
+from AttenPacker.common.data.data_types.model_output import ModelOutput
+from AttenPacker.common.global_constants import get_logger
+from AttenPacker.common.helpers import exists
+from AttenPacker.features.input_embedding import InputEmbedding
+from AttenPacker.models.model_abc.structure_model import StructureModel
+from AttenPacker.networks.geometric_gt.geom_gt_config import GeomGTConfig
+from AttenPacker.networks.geometric_gt.geometric_graph_transformer import GraphTransformer
+from AttenPacker.networks.se3_transformer.se3_transformer_config import SE3TransformerConfig
+from AttenPacker.networks.se3_transformer.tfn_transformer import TFNTransformer
 
 logger = get_logger(__name__)
 

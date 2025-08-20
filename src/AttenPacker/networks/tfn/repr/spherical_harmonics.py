@@ -4,7 +4,7 @@ from operator import mul
 import torch
 
 from functools import lru_cache
-from protein_learning.networks.tfn.repr.cache_utils import cache
+from AttenPacker.networks.tfn.repr.cache_utils import cache
 
 # constants
 

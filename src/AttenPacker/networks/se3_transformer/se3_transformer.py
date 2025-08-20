@@ -9,23 +9,23 @@ from einops import rearrange, repeat  # noqa
 from torch import Tensor
 from torch import nn
 
-from protein_learning.common.global_constants import get_logger
-from protein_learning.common.helpers import time_fn
-from protein_learning.networks.common.equivariant.fiber_units import (
+from AttenPacker.common.global_constants import get_logger
+from AttenPacker.common.helpers import time_fn
+from AttenPacker.networks.common.equivariant.fiber_units import (
     FiberNorm,
     FiberFeedForwardResidualBlock,
     FiberFeedForward,
     FiberResidual,
     FiberDropout,
 )
-from protein_learning.networks.common.helpers.neighbor_utils import NeighborInfo, get_neighbor_info
-from protein_learning.common.helpers import maybe_add_batch
-from protein_learning.networks.common.helpers.torch_utils import batched_index_select
-from protein_learning.networks.common.helpers.torch_utils import fused_gelu as GELU  # noqa
-from protein_learning.networks.tfn.repr.basis import get_basis
-from protein_learning.networks.common.utils import exists
-from protein_learning.networks.se3_transformer.attention.tfn_attention import TFNAttention
-from protein_learning.networks.se3_transformer.se3_transformer_config import SE3TransformerConfig
+from AttenPacker.networks.common.helpers.neighbor_utils import NeighborInfo, get_neighbor_info
+from AttenPacker.common.helpers import maybe_add_batch
+from AttenPacker.networks.common.helpers.torch_utils import batched_index_select
+from AttenPacker.networks.common.helpers.torch_utils import fused_gelu as GELU  # noqa
+from AttenPacker.networks.tfn.repr.basis import get_basis
+from AttenPacker.networks.common.utils import exists
+from AttenPacker.networks.se3_transformer.attention.tfn_attention import TFNAttention
+from AttenPacker.networks.se3_transformer.se3_transformer_config import SE3TransformerConfig
 
 logger = get_logger(__name__)
 

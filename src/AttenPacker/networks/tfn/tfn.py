@@ -3,17 +3,17 @@ from typing import Dict, Tuple, Optional
 from einops import rearrange  # noqa
 from torch import nn
 
-from protein_learning.networks.common.helpers.neighbor_utils import NeighborInfo
-from protein_learning.networks.common.helpers.torch_utils import batched_index_select, masked_mean
-from protein_learning.networks.common.utils import exists, default
-from protein_learning.networks.tfn.repr.fiber import default_tymap, to_order
-from protein_learning.networks.common.equivariant.fiber_units import FiberLinear, FiberResidual
+from AttenPacker.networks.common.helpers.neighbor_utils import NeighborInfo
+from AttenPacker.networks.common.helpers.torch_utils import batched_index_select, masked_mean
+from AttenPacker.networks.common.utils import exists, default
+from AttenPacker.networks.tfn.repr.fiber import default_tymap, to_order
+from AttenPacker.networks.common.equivariant.fiber_units import FiberLinear, FiberResidual
 import torch.nn.functional as F  # noqa
 from torch import Tensor
 import torch.utils.checkpoint as checkpoint
-from protein_learning.networks.common.helpers.torch_utils import fused_gelu as GELU  # noqa
-from protein_learning.networks.tfn.tfn_config import TFNConfig
-from protein_learning.networks.common.net_utils import SplitLinear
+from AttenPacker.networks.common.helpers.torch_utils import fused_gelu as GELU  # noqa
+from AttenPacker.networks.tfn.tfn_config import TFNConfig
+from AttenPacker.networks.common.net_utils import SplitLinear
 from functools import partial
 
 

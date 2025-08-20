@@ -6,12 +6,12 @@ from einops import rearrange, repeat  # noqa
 from torch import nn, Tensor
 import torch
 
-from protein_learning.common.helpers import exists
-from protein_learning.common.rigids import Rigids
-from protein_learning.networks.attention.node_attention import NodeUpdateBlock
-from protein_learning.networks.attention.pair_attention import PairUpdateBlock
-from protein_learning.networks.geometric_gt.geom_gt_config import GeomGTConfig
-from protein_learning.networks.loss.coord_loss import FAPELoss
+from AttenPacker.common.helpers import exists
+from AttenPacker.common.rigids import Rigids
+from AttenPacker.networks.attention.node_attention import NodeUpdateBlock
+from AttenPacker.networks.attention.pair_attention import PairUpdateBlock
+from AttenPacker.networks.geometric_gt.geom_gt_config import GeomGTConfig
+from AttenPacker.networks.loss.coord_loss import FAPELoss
 
 RIGID_SCALE = 10
 

@@ -4,11 +4,11 @@ import math
 import torch
 from torch import nn, Tensor
 from typing import Optional
-from protein_learning.common.data.data_types.model_output import ModelOutput
-from protein_learning.common.helpers import masked_mean
-from protein_learning.common.helpers import exists
-import protein_learning.common.protein_constants as pc
-from protein_learning.protein_utils.sidechains.sidechain_rigid_utils import atom37_to_torsion_angles
+from AttenPacker.common.data.data_types.model_output import ModelOutput
+from AttenPacker.common.helpers import masked_mean
+from AttenPacker.common.helpers import exists
+import AttenPacker.common.protein_constants as pc
+from AttenPacker.protein_utils.sidechains.sidechain_rigid_utils import atom37_to_torsion_angles
 from torchtyping import TensorType, patch_typeguard
 from typeguard import typechecked
 

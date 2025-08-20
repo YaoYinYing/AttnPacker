@@ -5,13 +5,13 @@ import torch
 from einops import rearrange, repeat  # noqa
 from torch import Tensor
 
-from protein_learning.common.helpers import masked_mean, batched_index_select
-import protein_learning.protein_utils.sidechains.sidechain_rigid_utils as scru
-from protein_learning.protein_utils.dihedral.angle_utils import signed_dihedral_4
-import protein_learning.common.protein_constants as pc
+from AttenPacker.common.helpers import masked_mean, batched_index_select
+import AttenPacker.protein_utils.sidechains.sidechain_rigid_utils as scru
+from AttenPacker.protein_utils.dihedral.angle_utils import signed_dihedral_4
+import AttenPacker.common.protein_constants as pc
 from torchtyping import TensorType, patch_typeguard
 from typeguard import typechecked
-from protein_learning.common.rigids import Rigids as SimpleRigids
+from AttenPacker.common.rigids import Rigids as SimpleRigids
 
 patch_typeguard()
 

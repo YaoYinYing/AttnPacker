@@ -6,15 +6,15 @@ import numpy as np
 import torch
 from torch import nn, Tensor
 
-from protein_learning.common.data.data_types.model_input import ModelInput
-from protein_learning.common.data.data_types.model_loss import ModelLoss
-from protein_learning.common.data.data_types.model_output import ModelOutput
-from protein_learning.common.global_constants import get_logger
-from protein_learning.features.input_embedding import InputEmbedding
-from protein_learning.models.model_abc.protein_model import ProteinModel
-from protein_learning.networks.loss.loss_config import LossTy
+from AttenPacker.common.data.data_types.model_input import ModelInput
+from AttenPacker.common.data.data_types.model_loss import ModelLoss
+from AttenPacker.common.data.data_types.model_output import ModelOutput
+from AttenPacker.common.global_constants import get_logger
+from AttenPacker.features.input_embedding import InputEmbedding
+from AttenPacker.models.model_abc.protein_model import ProteinModel
+from AttenPacker.networks.loss.loss_config import LossTy
 import numpy as np
-from protein_learning.features.feature_config import FeatureName
+from AttenPacker.features.feature_config import FeatureName
 from torch.utils.data import WeightedRandomSampler
 
 logger = get_logger(__name__)

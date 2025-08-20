@@ -4,13 +4,13 @@ from typing import List
 import numpy as np
 import torch
 
-from protein_learning.common.data.datasets.chain_dataset import ChainDataset
-from protein_learning.common.data.data_types.model_output import ModelOutput
-from protein_learning.common.data.data_types.model_input import ModelInput
-from protein_learning.common.global_config import GlobalConfig
-from protein_learning.models.model_abc.protein_model import ProteinModel
-from protein_learning.training.train_utils import EvalTy
-from protein_learning.training.trainer import Trainer
+from AttenPacker.common.data.datasets.chain_dataset import ChainDataset
+from AttenPacker.common.data.data_types.model_output import ModelOutput
+from AttenPacker.common.data.data_types.model_input import ModelInput
+from AttenPacker.common.global_config import GlobalConfig
+from AttenPacker.models.model_abc.protein_model import ProteinModel
+from AttenPacker.training.train_utils import EvalTy
+from AttenPacker.training.trainer import Trainer
 
 
 def to_npy(x):

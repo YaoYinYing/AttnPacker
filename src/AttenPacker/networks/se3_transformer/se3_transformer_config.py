@@ -2,14 +2,14 @@
 from __future__ import annotations
 
 from typing import Union, Tuple, Dict, Optional, Any, Callable
-from protein_learning.networks.common.utils import default
-from protein_learning.networks.common.helpers.torch_utils import fused_gelu as GELU  # noqa
-from protein_learning.networks.tfn.repr.fiber import Fiber, cast_fiber
-from protein_learning.networks.tfn.tfn_config import TFNConfig
-from protein_learning.networks.se3_transformer.se3_attention_config import SE3AttentionConfig
-from protein_learning.networks.config.net_config import NetConfig
+from AttenPacker.networks.common.utils import default
+from AttenPacker.networks.common.helpers.torch_utils import fused_gelu as GELU  # noqa
+from AttenPacker.networks.tfn.repr.fiber import Fiber, cast_fiber
+from AttenPacker.networks.tfn.tfn_config import TFNConfig
+from AttenPacker.networks.se3_transformer.se3_attention_config import SE3AttentionConfig
+from AttenPacker.networks.config.net_config import NetConfig
 from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
-from protein_learning.common.helpers import parse_bool
+from AttenPacker.common.helpers import parse_bool
 
 NONLIN = GELU
 

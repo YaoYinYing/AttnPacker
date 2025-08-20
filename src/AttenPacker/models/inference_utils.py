@@ -1,19 +1,19 @@
 import torch
 import os
-from protein_learning.common.data.data_types.protein import Protein
-from protein_learning.common.protein_constants import AA_TO_SC_ATOMS, BB_ATOMS, NAT_AA_SET
+from AttenPacker.common.data.data_types.protein import Protein
+from AttenPacker.common.protein_constants import AA_TO_SC_ATOMS, BB_ATOMS, NAT_AA_SET
 
-import protein_learning.models.model_abc.train as sc
-from protein_learning.models.utils.model_io import (
+import AttenPacker.models.model_abc.train as sc
+from AttenPacker.models.utils.model_io import (
     get_args_n_groups,
     load_args_for_eval,
 )
-from protein_learning.models.fbb_design.train import Train as SCPTrain, _augment
-import protein_learning.common.protein_constants as pc
-from protein_learning.features.input_embedding import InputEmbedding
-from protein_learning.models.utils.dataset_augment_fns import impute_cb
-from protein_learning.common.data.data_types.model_input import ModelInput
-from protein_learning.common.data.data_types.model_output import ModelOutput
+from AttenPacker.models.fbb_design.train import Train as SCPTrain, _augment
+import AttenPacker.common.protein_constants as pc
+from AttenPacker.features.input_embedding import InputEmbedding
+from AttenPacker.models.utils.dataset_augment_fns import impute_cb
+from AttenPacker.common.data.data_types.model_input import ModelInput
+from AttenPacker.common.data.data_types.model_output import ModelOutput
 from typing import Optional, Union
 from torch import Tensor
 import traceback

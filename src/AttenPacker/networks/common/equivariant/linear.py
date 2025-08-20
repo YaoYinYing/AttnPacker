@@ -6,8 +6,8 @@ from typing import Optional, Callable, Tuple
 import torch
 from torch import nn, einsum, Tensor
 
-from protein_learning.common.helpers import default, safe_norm
-from protein_learning.networks.common.net_utils import FeedForward
+from AttenPacker.common.helpers import default, safe_norm
+from AttenPacker.networks.common.net_utils import FeedForward
 
 
 class LinearInitTy(Enum):

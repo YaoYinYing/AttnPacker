@@ -9,18 +9,18 @@ from abc import abstractmethod
 from functools import partial
 from typing import List
 
-from protein_learning.common.protein_constants import ALL_ATOMS
-from protein_learning.features.input_embedding import InputEmbedding
-from protein_learning.features.masking.partition import (
+from AttenPacker.common.protein_constants import ALL_ATOMS
+from AttenPacker.features.input_embedding import InputEmbedding
+from AttenPacker.features.masking.partition import (
     ChainPartitionGenerator,
 )
-from protein_learning.models.utils.feature_flags import FeatureFlagGen
-from protein_learning.models.model_abc.train import TrainABC
-from protein_learning.models.utils.dataset_augment_fns import impute_cb, partition_chain
+from AttenPacker.models.utils.feature_flags import FeatureFlagGen
+from AttenPacker.models.model_abc.train import TrainABC
+from AttenPacker.models.utils.dataset_augment_fns import impute_cb, partition_chain
 
-# from protein_learning.models.utils.esm_embedder import ESMInputEmbedder
-# from protein_learning.models.utils.esm_input import ESMFeatGen
-from protein_learning.models.utils.opt_parse import add_flag_args, add_esm_options
+# from AttenPacker.models.utils.esm_embedder import ESMInputEmbedder
+# from AttenPacker.models.utils.esm_input import ESMFeatGen
+from AttenPacker.models.utils.opt_parse import add_flag_args, add_esm_options
 
 
 class TrainDesign(TrainABC):

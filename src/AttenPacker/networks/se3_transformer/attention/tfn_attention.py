@@ -1,12 +1,12 @@
 import torch
-from protein_learning.networks.common.helpers.neighbor_utils import NeighborInfo
-from protein_learning.networks.tfn.repr.fiber import Fiber, chunk_fiber
-from protein_learning.networks.tfn.tfn import ConvSE3
-from protein_learning.networks.common.equivariant.fiber_units import FiberLinear
+from AttenPacker.networks.common.helpers.neighbor_utils import NeighborInfo
+from AttenPacker.networks.tfn.repr.fiber import Fiber, chunk_fiber
+from AttenPacker.networks.tfn.tfn import ConvSE3
+from AttenPacker.networks.common.equivariant.fiber_units import FiberLinear
 from typing import Tuple, Dict, Optional
-from protein_learning.networks.se3_transformer.attention.se3_attention import SE3Attention
-from protein_learning.networks.se3_transformer.se3_attention_config import SE3AttentionConfig
-from protein_learning.networks.tfn.tfn_config import TFNConfig
+from AttenPacker.networks.se3_transformer.attention.se3_attention import SE3Attention
+from AttenPacker.networks.se3_transformer.se3_attention_config import SE3AttentionConfig
+from AttenPacker.networks.tfn.tfn_config import TFNConfig
 
 
 # attention

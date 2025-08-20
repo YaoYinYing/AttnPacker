@@ -1,4 +1,4 @@
-from Bio.PDB.Polypeptide import three_to_one # noqa
+from Bio.SeqUtils import seq1 as three_to_one  # noqa
 from Bio.PDB.PDBIO import Select # noqa
 
 

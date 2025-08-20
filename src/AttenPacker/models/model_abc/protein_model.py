@@ -5,11 +5,11 @@ from typing import Dict, Any, List
 import torch
 from torch import nn, Tensor
 
-from protein_learning.common.data.data_types.model_input import ModelInput
-from protein_learning.common.data.data_types.model_loss import ModelLoss
-from protein_learning.common.data.data_types.model_output import ModelOutput
-from protein_learning.common.global_constants import get_logger
-from protein_learning.features.input_embedding import InputEmbedding
+from AttenPacker.common.data.data_types.model_input import ModelInput
+from AttenPacker.common.data.data_types.model_loss import ModelLoss
+from AttenPacker.common.data.data_types.model_output import ModelOutput
+from AttenPacker.common.global_constants import get_logger
+from AttenPacker.features.input_embedding import InputEmbedding
 
 logger = get_logger(__name__)
 

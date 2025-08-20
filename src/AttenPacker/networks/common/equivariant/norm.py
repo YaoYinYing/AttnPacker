@@ -1,8 +1,8 @@
 import torch
 from torch import nn, Tensor
 
-from protein_learning.common.helpers import safe_normalize
-from protein_learning.networks.common.helpers.torch_utils import rand_uniform
+from AttenPacker.common.helpers import safe_normalize
+from AttenPacker.networks.common.helpers.torch_utils import rand_uniform
 
 
 class CoordNorm(nn.Module):
